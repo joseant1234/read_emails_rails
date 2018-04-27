@@ -3,7 +3,7 @@ class EmailsController < ApplicationController
   before_action :set_postulant
   before_action :set_emails_of_gmail
 
-  def index    
+  def index
     @mails.each do |email|
       body =  EmailReplyParser.parse_reply(email.text_part.decoded)
 
@@ -34,7 +34,6 @@ class EmailsController < ApplicationController
                         :enable_ssl => true
     end
     @mails = Mail.find(:what => :first, :count => 10, :order => :asc)
-
   end
 
 end
