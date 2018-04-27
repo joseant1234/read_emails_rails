@@ -1,0 +1,29 @@
+- if email.from != current_user.email
+  - css_class = 'offset-s6'
+  - card_class = 'orange'
+- else
+  - card_class = 'green'
+.row
+  .col.s6{class: "#{css_class}"}
+    .card.overflow-x
+      -# .card-content.orange
+        -# %p
+        -#   %i.material-icons.left email
+        -#   %span From:
+        -#   %span=# email.from
+        -#   %span= @postulant.email
+      -# .card-content
+      -#   %p
+      -#     %span Subject: 
+      -#     %span= email.try(:subject)
+      .card-content.lighten-4{class: "#{card_class}"}
+        %span{style: "white-space: pre-line"}=# email.text_part ? email.text_part.body.decoded.to_s.force_encoding("UTF-8") : nil      
+        %span{style: "white-space: pre-line"}=# email.try(:text_part).try(:decoded)
+        %p= "Enviado #{email.send_at}"
+        %p
+          -# - date = email.body.to_date rescue nil
+          -# - if date.present? 
+          -#   - index_date = email.body.index date.to_s
+          -#   %span{style: "white-space: pre-line"}= email.body[0..index_date]
+          -# - else
+          %span{style: "white-space: pre-line"}= email.body
