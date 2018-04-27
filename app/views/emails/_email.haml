@@ -3,4 +3,4 @@
     .card.overflow-x
       .card-content.lighten-4{class: "#{color_card(email)}"}
         %p= "Enviado #{email.send_at}"
-        %p{style: "white-space: pre-line"}= email.body
+        %p.line-of-body= email.body
